@@ -1,1 +1,46 @@
-// TODO
+.post {
+  color: var(--body);
+  font-weight: 400;
+
+  h3 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: var(--heading);
+  }
+  > p {
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+  }
+}
+
+.post + .post {
+  margin-top: 3rem;
+}
+
+.postInfo {
+  display: flex;
+  align-items: center;
+
+  p + p {
+    margin-left: 1.875rem;
+  }
+
+  svg {
+    margin-right: 0.5rem;
+    vertical-align: text-top;
+  }
+}
+
+.loadMore {
+  color: var(--highlight);
+  font-size: 1rem;
+  font-weight: 600;
+  display: inline-block;
+  margin-top: 3rem;
+
+  &:hover {
+    text-decoration: underline;
+    cursor: pointer;
+  }
+}
