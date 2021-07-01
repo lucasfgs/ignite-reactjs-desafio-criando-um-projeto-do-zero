@@ -1,1 +1,45 @@
-// TODO
+.banner {
+  width: 100%;
+}
+
+.postContent {
+  padding-bottom: 2rem;
+  header {
+    margin: 3.5rem 0;
+
+    > h2 {
+      font-size: 3rem;
+      font-weight: 700;
+      margin-bottom: 1.25rem;
+    }
+  }
+}
+
+.postInfo {
+  display: flex;
+  color: var(--body);
+
+  p + p {
+    margin-left: 1.875rem;
+  }
+
+  svg {
+    margin-right: 0.5rem;
+    vertical-align: baseline;
+  }
+}
+
+.postArcticle {
+  > h3 {
+    font-size: 2rem;
+    margin: 2rem 0;
+  }
+  > p {
+    color: var(--body);
+    font-size: 1rem;
+  }
+
+  p + p {
+    margin-top: 1rem;
+  }
+}
