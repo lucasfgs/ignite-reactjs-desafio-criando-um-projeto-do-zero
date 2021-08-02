@@ -1,9 +1,12 @@
-import { GetStaticPaths, GetStaticProps } from 'next';
+import { GetStaticPaths, GetStaticProps, GetStaticPropsContext } from 'next';
 import { AiOutlineCalendar, AiOutlineUser } from 'react-icons/ai';
+import Prismic from '@prismicio/client';
 import { BiTime } from 'react-icons/bi';
 import { IoMdTime } from 'react-icons/io';
 
 import { getPrismicClient } from '../../services/prismic';
+
+import Header from '../../components/Header';
 
 import commonStyles from '../../styles/common.module.scss';
 import styles from './post.module.scss';
@@ -32,9 +35,7 @@ interface PostProps {
 export default function Post() {
   return (
     <main>
-      <header className={commonStyles.headerContainer}>
-        <img src="/images/logo.svg" alt="spacetraveling" />
-      </header>
+      <Header />
       <img src="/images/banner.png" alt="banner" className={styles.banner} />
       <div className={commonStyles.contentContainer}>
         <article className={styles.postContent}>
@@ -90,16 +91,24 @@ export default function Post() {
   );
 }
 
-// export const getStaticPaths = async () => {
-//   const prismic = getPrismicClient();
-//   const posts = await prismic.query(TODO);
+export const getStaticPaths = async () => {
+  const prismic = getPrismicClient();
+  const posts = await prismic.query([
+    Prismic.predicates.at('document.type', 'post'),
+  ]);
 
-//   // TODO
-// };
+  const paths = posts.results.map(post => ({
+    params: { id: post.uid.toString() },
+  }));
 
-// export const getStaticProps = async context => {
-//   const prismic = getPrismicClient();
-//   const response = await prismic.getByUID(TODO);
+  console.log(paths);
 
-//   // TODO
-// };
+  return { paths, fallback: true };
+};
+
+export const getStaticProps = async ({ params }: GetStaticPropsContext) => {
+  // const prismic = getPrismicClient();
+  // const response = await prismic.getByUID(TODO);
+  // console.log(params);
+  // TODO
+};
